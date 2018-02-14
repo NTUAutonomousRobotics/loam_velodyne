@@ -1,0 +1,17 @@
+<launch>
+    <param name="use_sim_time" value="true" />
+
+    <node pkg="s2d_pcd_assembler" type="s2d_pcd_assembler_node" name="s2d_pcd_assembler_node" output="screen">
+        <remap from="velodyne_points" to="velodyne_cloud_registered_output" />
+        <param name="ds" value="1.0" />
+
+        <param name="max_range" value="10.0" />
+
+        <param name="use_voxel_grid" type="bool" value="false" />
+        <param name="leaf_size" value="0.075" />
+        
+        <!--param name="sensor_frame" value="base_link" /-->
+        <param name="sensor_frame" value="velodyne" />
+        <param name="robot_frame" value="base_link" />
+    </node>
+</launch>

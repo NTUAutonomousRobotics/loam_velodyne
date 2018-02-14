@@ -4,24 +4,19 @@
 
   <arg name="rviz" default="true" />
 
-  <node pkg="loam_velodyne" type="scanRegistration" name="scanRegistration" output="screen">
-        <remap from="imu/data" to="imu" />
-  </node>
+  <node pkg="loam_velodyne" type="scanRegistration" name="scanRegistration" output="screen"/>
 
   <node pkg="loam_velodyne" type="laserOdometry" name="laserOdometry" output="screen" respawn="true">
   </node>
 
-  <node pkg="loam_velodyne" type="laserMapping" name="laserMapping" output="screen">
-        <remap from="imu/data" to="imu" />
-  </node>
-
+  <node pkg="loam_velodyne" type="laserMapping" name="laserMapping" output="screen"/>
   <node pkg="loam_velodyne" type="transformMaintenance" name="transformMaintenance" output="screen"/>
 
   <include file="$(find loam_velodyne)/launch/loam_cam_to_map_transform.launch" />
 
   <include file="$(find loam_velodyne)/launch/s2d_pcd_assembler.launch" />
 
-  <include file="$(find loam_velodyne)/launch/octomap_mapping.launch" />
+  <!--include file="$(find octomap_edge_detection)/launch/octomap_edge_detect_nodelets.launch" /-->
 
   <group if="$(arg rviz)">
     <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find loam_velodyne)/rviz_cfg/loam_velodyne.rviz" />
